@@ -3,12 +3,20 @@
 # function area
 
 stopTunnel(){
-ID=`ps -ef | grep "gost" | grep -v "$0" | grep -v "grep" | awk '{print $2}'`
-for id in $ID
+# ID=`ps -ef | grep "gost" | grep -v "$0" | grep -v "grep" | awk '{print $2}'`
+# for id in $ID
+# do
+contu=Y
+while [ $contu = "Y" ]
 do
-kill -9 $id
-echo "killed $id"
+echo -e "请输入要停止的隧道PID："
+read ID
+kill -9 $ID
+echo "成功停止PID为 $id 的隧道！"
+echo "是否继续停止隧道？ [Y/N]"
+read contu
 done
+# done
 }
 
 viewTunnel(){
