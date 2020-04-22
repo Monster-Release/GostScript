@@ -5,15 +5,29 @@
 viewTunnel(){
 echo "下面是正在运行中的隧道:"
 ps -ef | grep "gost" | grep -v "$0" | grep -v "grep"
-echo "是否返回主菜单？ [Y/N]"
-read backM
-if [ $backM = "Y" -o $backM = "y" ]
-then
+echo -e "\033[32m----------------------------\033[0m"
+echo -e "1.停止 运行中的隧道"
+echo -e "2.返回 主菜单"
+echo -e "3.退出 本脚本!"
+echo -e "\033[32m----------------------------\033[0m"
+echo -e "你的选择[1-3]："
+read tstunnel
+case $tstunnel in 
+1) 
+    stopTunnel
+    ;;
+2) 
     Menu
-else
-    echo "脚本退出!"
+    ;;
+3)
+    echo "你选择了退出脚本"
     exit 1
-fi
+    ;;
+*) 
+    echo "输入错误！"
+    exit 1
+    ;;
+esac
 }
 
 stopTunnel(){
@@ -29,13 +43,13 @@ done
 
 downGost(){
         `reset`
-        echo -e "\033[33m你选择了下载Gost\n\033[0m\033[31m注意哦，本操作需要有wget，没有的话提示成功也是失败的哦\n\033[0m"
+        echo -e "\033[33m你选择了下载Gost\n\033[0m\033[31m本操作需要wget支持\n\033[0m"
 
-        echo -e "\033[33m0.我是amd64的VPS，选这个下载\n\033[0m"
-        echo -e "\033[33m1.我是arm v7的设备，如树莓派，选此下载\n\033[0m"
-        echo -e "\033[33m2.现在退出还来得及！\n\033[0m"
+        echo -e "\033[33m0.下载amd64 VPS版Gost二进制文件\n\033[0m"
+        echo -e "\033[33m1.下载arm v7版Gost二进制文件(树莓派等)\n\033[0m"
+        echo -e "\033[33m2.返回主菜单！\n\033[0m"
 
-        echo -e "\033[33m撒，你的选择！[0-2]：\c\033[0m"
+        echo -e "\033[33m你的选择！[0-2]：\c\033[0m"
 
         read chss
 
@@ -55,7 +69,7 @@ downGost(){
                 echo "\033[33mgost 2.11.0 armv7 下载成功，且已经解压、赋权，改名为 gost，脚本退出\033[0m"
         elif [ $chss = "2" ]
         then
-                exit 1
+                Menu
         else
                 echo "输入错误，脚本退出"
                 exit 1
@@ -210,14 +224,14 @@ setServer(){
         if [ $chss_relay = "Y" -o $chss_relay = "y" ]
         then
             echo -e "\033[33m\n你选择了relay+基础隧道协议的模式！\n\033[0m"
-            echo -e "\033[33m隧道参数如下：\n请确认：\n隧道传输端口：${tunnelPort}\n隧道类型：relay+${tunnelType}\n\033[0m"
+            echo -e "\033[33m隧道参数如下：\n隧道传输端口：${tunnelPort}\n隧道类型：relay+${tunnelType}\n\033[0m"
             cmd="nohup ./gost -L="relay+${tunnelType}"://:"${tunnelPort}" >1.log 2>&1 &"
             echo -e "$cmd\n"
             eval $cmd
             echo -e "\033[33m\n服务端端隧道部署成功！\n\033[0m"
         else
             echo "\033[33m你选择了基础隧道协议的模式！\033[0m"
-            echo -e "\033[33m隧道参数如下：\n请确认：\n隧道传输端口：${tunnelPort}\n隧道类型：${tunnelType}\n\033[0m"
+            echo -e "\033[33m隧道参数如下：\n隧道传输端口：${tunnelPort}\n隧道类型：${tunnelType}\n\033[0m"
             cmd="nohup ./gost -L="${tunnelType}"://:"${tunnelPort}" >1.log 2>&1 &"
             echo -e "$cmd\n"
             eval $cmd
@@ -251,7 +265,7 @@ echo -e "\033[33m联系作者：HelloWorld-create\033[0m"
 
 echo -e "\033[32m--------------------------------------------------------------\033[0m"
 
-echo -e "\033[33m0.下载并解压gost文件在本目录下（如果本目录没有gost请先执行！）\n\033[0m"
+echo -e "\033[33m0.下载并解压gost二进制文件(wget本脚本时已经默认下载了gost二进制文件)\n\033[0m"
 echo -e "\033[33m1.配置 客户端\n\033[0m"
 echo -e "\033[33m2.配置 服务端\n\033[0m"
 echo -e "\033[33m3.查看 运行的隧道\n\033[0m"
