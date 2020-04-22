@@ -5,6 +5,15 @@
 viewTunnel(){
 echo "下面是正在运行中的隧道:"
 ps -ef | grep "gost" | grep -v "$0" | grep -v "grep"
+echo "是否返回主菜单？ [Y/N]"
+read backM
+if [ $backM = "Y" -o $backM = "y" ]
+then
+    Menu
+else
+    echo "脚本退出!"
+    exit 1
+fi
 }
 
 stopTunnel(){
@@ -116,7 +125,7 @@ setClient(){
 
         echo "是否在基础隧道协议基础上添加relay协议？[Y/N]"
         read chss_relay
-        if [ $chss_relay = "Y" ]
+        if [ $chss_relay = "Y" -o $chss_relay = "y" ]
         then
             echo -e "\033[33m\n你选择了relay+基础隧道协议的模式！\n\033[0m"
             echo -e "\033[33m隧道参数如下：\n隧道类型：relay+${tunnelType}\n本地隧道服务端口：${clientPort}\n远程服务地址：${serviceAddr}\n远程服务端口：${servicePort}\n隧道传输端口：${tunnelPort}\n\033[0m"
@@ -137,7 +146,7 @@ setClient(){
 
         read YYNN
 
-        if [ $YYNN = "Y" ]
+        if [ $YYNN = "Y" -o $YYNN = "y" ]
         then
             echo -e "\033[33m\n加入开机自启动!\n\033[0m"
             `rm -f /etc/rc.d/rc.local`
@@ -198,7 +207,7 @@ setServer(){
 
         echo "是否在基础隧道协议基础上添加relay协议？[Y/N]"
         read chss_relay
-        if [ $chss_relay = "Y" ]
+        if [ $chss_relay = "Y" -o $chss_relay = "y" ]
         then
             echo -e "\033[33m\n你选择了relay+基础隧道协议的模式！\n\033[0m"
             echo -e "\033[33m隧道参数如下：\n请确认：\n隧道传输端口：${tunnelPort}\n隧道类型：relay+${tunnelType}\n\033[0m"
@@ -219,7 +228,7 @@ setServer(){
 
         read YYNN
 
-        if [ $YYNN = "Y" ]
+        if [ $YYNN = "Y" -o $YYNN = "y" ]
         then
             echo -e "\033[33m\n加入开机自启动!\n\033[0m"
             `rm -f /etc/rc.d/rc.local`
