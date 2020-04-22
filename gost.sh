@@ -2,26 +2,20 @@
 
 # function area
 
-stopTunnel(){
-# ID=`ps -ef | grep "gost" | grep -v "$0" | grep -v "grep" | awk '{print $2}'`
-# for id in $ID
-# do
-contu=Y
-while [ $contu = "Y" ]
-do
-echo -e "请输入要停止的隧道PID："
-read ID
-kill -9 $ID
-echo "成功停止PID为 $id 的隧道！"
-echo "是否继续停止隧道？ [Y/N]"
-read contu
-done
-# done
-}
-
 viewTunnel(){
 echo "下面是正在运行中的隧道:"
 ps -ef | grep "gost" | grep -v "$0" | grep -v "grep"
+}
+
+stopTunnel(){
+while :
+do
+echo "请输入要停止的隧道PID：(Ctrl+C退出)"
+read id
+kill -9 $id
+echo "成功停止PID为 $id 的隧道！"
+Menu
+done
 }
 
 downGost(){
@@ -62,7 +56,7 @@ downGost(){
 setClient(){
 
         tunnelType="ws"
-        clientPort="250"
+        clientPort="23333"
         tunnelPort="80"
         serviceAddr="192.168.1.1"
         servicePort="443"
@@ -181,7 +175,7 @@ setClient(){
                 exit 1
         fi
 
-        echo -e "\n\033[33m是否加入开机自启动？\n\033[31m（只保证CentOS7有效，且此行为会使得开机自启动文件完全重置，请小心决定）\n\033[33m[Y/N]：\033[0m\c"
+        echo -e "\n\033[33m是否加入开机自启动？\n\033[31m（只保证CentOS7有效，且此行为会使得开机自启动文件完全重置，请小心决定！）\n\033[33m[Y/N]：\033[0m\c"
 
         read YYNN
 
@@ -192,8 +186,9 @@ setClient(){
                 echo "${cmd}" > /etc/rc.d/rc.local
                 `chmod +x /etc/rc.d/rc.local`
         else
-                echo -e "\033[33m \nヾ(￣▽￣)Bye~Bye~\n \033[0m"
+                echo -e "\033[33m \n您选择了开机不自动启动该隧道！\n \033[0m"
         fi
+    Menu
 }
 
 setServer(){
@@ -316,12 +311,12 @@ setServer(){
                 echo "${cmd}" > /etc/rc.d/rc.local
                 `chmod +x /etc/rc.d/rc.local`
         else
-                echo -e "\033[33m \nヾ(￣▽￣)Bye~Bye~\n\033[0m"
+                echo -e "\033[33m \n您选择了开机不自动启动该隧道！\n\033[0m"
         fi
+    Menu
 }
 
-# function area end
-
+Menu(){
 `reset`
 
 echo -e "\033[32m--------------------------------------------------------------\033[0m"
@@ -343,7 +338,7 @@ echo -e "\033[33m3.查看 运行的隧道\n\033[0m"
 echo -e "\033[33m4.停止 运行中的隧道\n\033[0m"
 echo -e "\033[33m5.退出脚本\n\033[0m"
 
-echo -e "\033[33m我要选择[0-4]：\033[0m\c"
+echo -e "\033[33m我的选择[0-5]：(Ctrl+C退出)\033[0m\c"
 read chs
 
 
@@ -368,3 +363,8 @@ then
 else
         echo "错误输入，脚本结束"
 fi
+}
+
+# function area end
+
+Menu
