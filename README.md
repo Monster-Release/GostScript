@@ -19,7 +19,7 @@ apt-get install wget
 
 ```shell
 git clone https://github.com/HelloWorld-create/GostScript.git
-cd GostScript && chmod 777 gost.sh && bash gost.sh
+chmod 777 GostScript && cd GostScript && bash gost.sh
 ```
 
 运行之后按照引导来即可。
