@@ -18,7 +18,8 @@ apt-get install wget
 然后输入以下命令一键下载、赋权、运行
 
 ```shell
-wget https://github.com/HelloWorld-create/GostScript/blob/master/gost.sh && chmod +x gost.sh && ./gost.sh
+git clone https://github.com/HelloWorld-create/GostScript.git
+cd GostScript && chmod 777 gost.sh && bash gost.sh
 ```
 
 运行之后按照引导来即可。
