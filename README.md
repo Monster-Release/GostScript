@@ -1,10 +1,13 @@
 # Gost Script
 本脚本帮助你快速构建Gost安全隧道，保证数据安全有效传输。
 
-目前支持的隧道传输协议：tls,mtls,ws,mws,wss,mwss,kcp
-支持以上模式附加relay
-支持udp over tcp
-加入iptables中转支持(感谢arloor)
+- 目前支持的隧道传输协议：tls,mtls,ws,mws,wss,mwss,kcp
+
+- 支持以上模式附加relay
+
+- 支持udp over tcp
+
+- 加入iptables中转支持(感谢arloor)
 
 ## 使用说明
 
