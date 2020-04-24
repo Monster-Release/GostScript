@@ -18,8 +18,7 @@ apt-get install wget
 然后输入以下命令一键下载、赋权、运行
 
 ```shell
-git clone https://github.com/HelloWorld-create/GostScript.git
-chmod -R 777 GostScript && cd GostScript && bash gost.sh
+wget -N --no-check-certificate
 ```
 
 运行之后按照引导来即可。
