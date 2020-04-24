@@ -274,9 +274,10 @@ Menu(){
         echo -e "\033[33m4.查看 运行的隧道\n\033[0m"
         echo -e "\033[33m5.查看 隧道转发日志\n\033[0m"
         echo -e "\033[33m6.停止 运行中的隧道\n\033[0m"
-        echo -e "\033[33m7.退出脚本\n\033[0m"
+        echo -e "\033[33m7.设置 iptables转发\n\033[0m"
+        echo -e "\033[33m8.退出脚本\n\033[0m"
 
-        echo -n "你的选择[1-7]："
+        echo -n "你的选择[1-8]："
         read chs
 
         case $chs in
@@ -299,6 +300,9 @@ Menu(){
         stopTunnel
         ;;
         7)
+        ./natcfg.sh
+        ;;
+        8)
         exit 1
         ;;
         *)
