@@ -300,7 +300,7 @@ Menu(){
         stopTunnel
         ;;
         7)
-        ./natcfg.sh
+        ./iptables.sh
         ;;
         8)
         exit 1
