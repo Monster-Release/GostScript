@@ -13,14 +13,14 @@
 
 本脚本**已在CentOS7测试通过**，当然其他系统也都可以用。
 
-使用脚本之前需要有`wget`，没有的话先安装
+使用脚本之前需要有`git`，没有的话先安装
 
 ```bash
-yum -y install wget
+yum -y install git
 ```
 
 ```shell
-apt-get install wget
+apt-get install git
 ```
 
 然后输入以下命令一键下载、赋权、运行
