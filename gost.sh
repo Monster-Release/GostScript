@@ -176,7 +176,7 @@ choiceServerEndType(){
 
         case $chss_relay in
         1)
-        echo -e "\033[33m\n你选择了relay+基础隧道协议的模式！\n\033[0m"
+        echo -e "\033[33m你选择了relay+基础隧道协议的模式！\n\033[0m"
         echo -e "\033[33m隧道参数如下：\n隧道传输端口：${tunnelPort}\n隧道类型：relay+${tunnelType}\n\033[0m"
         cmd="nohup ./gost -L="relay+${tunnelType}"://:"${tunnelPort}" >1.log 2>&1 &"
         echo -e "$cmd\n"
@@ -184,7 +184,7 @@ choiceServerEndType(){
         echo -e "\033[33m\n服务端端隧道部署成功！\n\033[0m"
         ;;
         2)
-        echo "\033[33m你选择了基础隧道协议的模式！\033[0m"
+        echo -e "\033[33m你选择了基础隧道协议的模式！\n\033[0m"
         echo -e "\033[33m隧道参数如下：\n隧道传输端口：${tunnelPort}\n隧道类型：${tunnelType}\n\033[0m"
         cmd="nohup ./gost -L="${tunnelType}"://:"${tunnelPort}" >1.log 2>&1 &"
         echo -e "$cmd\n"
