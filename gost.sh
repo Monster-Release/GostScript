@@ -139,7 +139,7 @@ choiceCilentEndType(){
         1)
         echo "\033[33m你选择了基础协议仅支持tcp模式！\033[0m"
         echo -e "\033[33m隧道参数如下：\n隧道类型：${tunnelType}\n本地隧道服务端口：${clientPort}\n远程服务地址：${serviceAddr}\n远程服务端口：${servicePort}\n隧道传输端口：${tunnelPort}\n\033[0m"
-        cmd="nohup ./gost -L=:"${clientPort}"/:"${servicePort}" -F="${tunnelType}"://"${serviceAddr}":"${servicePort}" >1.log 2>&1 &"
+        cmd="nohup ./gost -L=:"${clientPort}"/:"${servicePort}" -F="${tunnelType}"://"${serviceAddr}":"${tunnelPort}" >1.log 2>&1 &"
         echo -e "$cmd\n"
         eval $cmd
         echo -e "\033[33m\n客户端隧道部署成功！\n\033[0m"
